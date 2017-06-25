@@ -28,6 +28,8 @@
 
 @property (nonatomic, weak) id<DHOptionsMenuItemProtocol> delegate;
 
-- (id)initWithTitle:(NSString*)title;
-
+- (id)initWithText:(NSString*)text
+                andTitleColor:(UIColor*)titleColor
+           andBackgroundColor:(UIColor*)backgroundColor
+                      andSize:(CGSize)size;
 @end

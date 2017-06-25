@@ -8,37 +8,27 @@
 #import <UIKit/UIKit.h>
 #import "DHOptionsMenuItem.h"
 
-//! Project version number for DHOptionsMenu.
-FOUNDATION_EXPORT double DHOptionsMenuVersionNumber;
 
-//! Project version string for DHOptionsMenu.
-FOUNDATION_EXPORT const unsigned char DHOptionsMenuVersionString[];
+@protocol DHOptionsMenuDelegate
 
-// In this header, you should import all the public headers of your framework using statements like #import <DHOptionsMenu/PublicHeader.h>
+- (void)selectedMenuItem:(DHOptionsMenuItem*)item;
+- (void)menuClosed;
 
-typedef NS_ENUM(NSInteger, DHOptionMenuDirection) {
-    DHOptionMenuDirectionDown = 0,
-    DHOptionMenuDirectionUp = 1,
-    DHOptionMenuDirectionRight = 2,
-    DHOptionMenuDirectionLeft = 3,
-};
+@end
 
-@interface DHOptionMenu : UIView<DHOptionsMenuItemProtocol>
+@interface DHOptionsMenu : UIView<DHOptionsMenuItemProtocol>
 
-@property (nonatomic, assign) CGPoint startPoint;
-@property (nonatomic, assign) CGFloat spacing;
 @property (nonatomic, assign) BOOL rotateStartMenu;
 
 - (id)initWithFrame:(CGRect)frame
-          direction:(DHOptionMenuDirection)direction
           menuItems:(NSArray *)menuItems
-        menuHandler:(void (^)(DHOptionsMenuItem *item, NSUInteger index))menuHandler
-       closeHandler:(void (^)(void))closeHandler;
+            spacing:(CGFloat)spacing
+             caller:(UIView*)caller
+           delegate:(id<DHOptionsMenuDelegate>)delegate;
 
 - (DHOptionsMenuItem *)menuItemAtIndex:(NSUInteger)index;
 
-- (void)open;
-
-- (void)close;
+- (void)show;
+- (void)hide;
 
 @end

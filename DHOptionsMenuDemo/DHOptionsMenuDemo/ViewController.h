@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DHOptionsMenu.h"
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController<DHOptionsMenuDelegate>
 
 
 @end

@@ -10,14 +10,18 @@
 
 @implementation DHOptionsMenuItem
 
-
-- (id)initWithTitle:(NSString*)title {
+- (id)initWithText:(NSString*)text
+                andTitleColor:(UIColor*)titleColor
+           andBackgroundColor:(UIColor*)backgroundColor
+                      andSize:(CGSize)size {
     if (self = [super init]) {
-        self.text = title;
+        self.text = text;
+        self.textColor = titleColor;
+        self.backgroundColor = backgroundColor;
+        self.itemSize = size;
         self.bounds = CGRectMake(0, 0, self.itemSize.width, self.itemSize.height);
         self.userInteractionEnabled = YES;
     }
-    
     return self;
 }
 

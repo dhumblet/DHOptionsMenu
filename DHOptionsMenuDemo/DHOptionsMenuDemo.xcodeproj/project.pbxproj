@@ -13,6 +13,8 @@
 		56B7566F1EFD99CD0090232C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56B7566D1EFD99CD0090232C /* Main.storyboard */; };
 		56B756711EFD99CD0090232C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56B756701EFD99CD0090232C /* Assets.xcassets */; };
 		56B756741EFD99CD0090232C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56B756721EFD99CD0090232C /* LaunchScreen.storyboard */; };
+		56B756801EFDA72B0090232C /* DHOptionsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B7567C1EFDA72B0090232C /* DHOptionsMenu.m */; };
+		56B756811EFDA72B0090232C /* DHOptionsMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B7567E1EFDA72B0090232C /* DHOptionsMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		56B756701EFD99CD0090232C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56B756731EFD99CD0090232C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56B756751EFD99CD0090232C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56B7567C1EFDA72B0090232C /* DHOptionsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHOptionsMenu.m; sourceTree = "<group>"; };
+		56B7567D1EFDA72B0090232C /* DHOptionsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHOptionsMenu.h; sourceTree = "<group>"; };
+		56B7567E1EFDA72B0090232C /* DHOptionsMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHOptionsMenuItem.m; sourceTree = "<group>"; };
+		56B7567F1EFDA72B0090232C /* DHOptionsMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHOptionsMenuItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 		56B756631EFD99CD0090232C /* DHOptionsMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
+				56B7567B1EFDA6FC0090232C /* DHOptionsMenu */,
 				56B756671EFD99CD0090232C /* AppDelegate.h */,
 				56B756681EFD99CD0090232C /* AppDelegate.m */,
 				56B7566A1EFD99CD0090232C /* ViewController.h */,
@@ -77,6 +84,18 @@
 				56B756651EFD99CD0090232C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		56B7567B1EFDA6FC0090232C /* DHOptionsMenu */ = {
+			isa = PBXGroup;
+			children = (
+				56B7567D1EFDA72B0090232C /* DHOptionsMenu.h */,
+				56B7567C1EFDA72B0090232C /* DHOptionsMenu.m */,
+				56B7567F1EFDA72B0090232C /* DHOptionsMenuItem.h */,
+				56B7567E1EFDA72B0090232C /* DHOptionsMenuItem.m */,
+			);
+			name = DHOptionsMenu;
+			path = ../../DHOptionsMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,7 +129,7 @@
 				TargetAttributes = {
 					56B756601EFD99CD0090232C = {
 						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -153,6 +172,8 @@
 				56B7566C1EFD99CD0090232C /* ViewController.m in Sources */,
 				56B756691EFD99CD0090232C /* AppDelegate.m in Sources */,
 				56B756661EFD99CD0090232C /* main.m in Sources */,
+				56B756811EFDA72B0090232C /* DHOptionsMenuItem.m in Sources */,
+				56B756801EFDA72B0090232C /* DHOptionsMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,10 +295,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DHOptionsMenuDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dh.DHOptionsMenuDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -285,10 +308,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DHOptionsMenuDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dh.DHOptionsMenuDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
