@@ -3,8 +3,8 @@ DHOptionsMenu
 An Android inspired options menu for iOS.
 
 ## Screenshot
-[![](https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif)](https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif){:width="50%"}
-<!-- <img src="https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif" width="350"> -->
+<!-- [![](https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif)](https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif) -->
+<img src="https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif" width="350">
 
 ## Installation
 
@@ -74,4 +74,7 @@ Please use the [Demo project](https://github.com/dhumblet/DHOptionsMenu/tree/mas
 ## Alignment
 - DHOptionsMenuAlignLeft: Aligns menu items with the left side of the view that triggered the menu
 - DHOptionsMenuAlignRight: Aligns menu items with the right side of the view that triggered the menu
+
+## 
+Please feel free to send me any feedback or improvements you might have.
     

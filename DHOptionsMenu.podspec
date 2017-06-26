@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Derk Humblet" => "derk.humblet@ccvlab.eu" }
+  s.author             = { "Derk Humblet" => "derk.humblet@gmail.com" }
   # Or just: s.author    = "Derk Humblet"
   # s.authors            = { "Derk Humblet" => "derk.humblet@ccvlab.eu" }
   # s.social_media_url   = "http://twitter.com/Derk Humblet"
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/DHOptionsMenu.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/dhumblet/DHOptionsMenu", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
