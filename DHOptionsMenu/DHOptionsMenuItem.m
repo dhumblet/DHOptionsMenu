@@ -37,7 +37,6 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    // if move out, cancel highlighted.
     CGPoint location = [[touches anyObject] locationInView:self];
     if (!CGRectContainsPoint(self.bounds, location)) {
         self.highlighted = NO;
@@ -45,12 +44,10 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    self.highlighted = NO;
-    // if stop in the area, response to the touches event.
     CGPoint location = [[touches anyObject] locationInView:self];
     if (CGRectContainsPoint(self.bounds, location)) {
-        if ([self.delegate respondsToSelector:@selector(floatingActionMenuItemDidTouch:)]) {
-            [self.delegate floatingActionMenuItemDidTouch:self];
+        if ([self.delegate respondsToSelector:@selector(selectedMenuItem:)]) {
+            [self.delegate selectedMenuItem:self];
         }
     }
 }

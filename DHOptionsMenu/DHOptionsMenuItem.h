@@ -14,17 +14,13 @@
 @protocol DHOptionsMenuItemProtocol <NSObject>
 
 @required
-- (void)floatingActionMenuItemDidTouch:(DHOptionsMenuItem *)item;
+- (void)selectedMenuItem:(DHOptionsMenuItem *)item;
 
 @end
 
 @interface DHOptionsMenuItem : UILabel
 
-@property (nonatomic) CGPoint startPoint;
-@property (nonatomic) CGPoint endPoint;
-@property (nonatomic) CGPoint nearPoint;
-@property (nonatomic) CGPoint farPoint;
-@property (nonatomic) CGSize itemSize;/**< Default is image size */
+@property (nonatomic) CGSize itemSize;
 
 @property (nonatomic, weak) id<DHOptionsMenuItemProtocol> delegate;
 

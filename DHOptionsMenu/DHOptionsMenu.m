@@ -29,6 +29,8 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
 @property (nonatomic, assign) NSInteger animationTag;
 @property (nonatomic, assign) UIView* caller;
 
+@property (nonatomic) CGRect menuRect;
+
 @end
 
 @implementation DHOptionsMenu
@@ -39,11 +41,10 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
              caller:(UIView*)caller
            delegate:(id<DHOptionsMenuDelegate>)delegate {
     
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:[[UIScreen mainScreen] bounds]]) {
         self.menuItems = menuItems;
         self.delegate = delegate;
         self.caller = caller;
-
         self.itemSpacing = spacing;
     }
     return self;
@@ -60,6 +61,7 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
 
 - (void)show {
     DHOptionsMenuItem *previousItem = nil;
+    DHOptionsMenuItem *firstItem = nil;
     CGPoint startPoint = CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
     
     for (DHOptionsMenuItem* item in self.menuItems) {
@@ -73,9 +75,12 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
             [self insertSubview:item belowSubview:previousItem];
         } else {
             [self addSubview:item];
+            firstItem = item;
         }
         previousItem = item;
     }
+    
+    self.menuRect = CGRectMake(firstItem.frame.origin.x, firstItem.frame.origin.y, firstItem.frame.size.width, previousItem.frame.origin.y - firstItem.frame.origin.y);
 }
 
 - (void)hide {
@@ -86,32 +91,22 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
 
 #pragma mark - Touch
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    // if the menu is animating, prevent touches
-    if (self.isAnimating) {
-        return NO;
-    }
-    // if the menu state is expanding, everywhere can be touch
-    // otherwise, only the add button are can be touch
-    if (self.isExpanded) {
-        return YES;
-    } else {
-        return CGRectContainsPoint([[self menuItemAtIndex:0] frame], point);
-    }
-}
+//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+//    return CGRectContainsPoint(self.menuRect, point);
+//}
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self hide];
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint point = [[touches anyObject] locationInView:self];
+
+    if (!CGRectContainsPoint(self.menuRect, point)) {
+        [self hide];
+    }
+    
 }
 
 #pragma mark - FloatingActionMenuItemDelegate
 
-- (void)floatingActionMenuItemDidTouch:(DHOptionsMenuItem *)item {
-    if (item.tag == 0) {
-        [self hide];
-        return;
-    }
-    
+- (void)selectedMenuItem:(DHOptionsMenuItem *)item {
     if (self.delegate) {
         [self.delegate selectedMenuItem:item];
     }
