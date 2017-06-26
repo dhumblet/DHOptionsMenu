@@ -23,6 +23,10 @@
     [self showMenuForButton:sender withAlignment:DHOptionsMenuAlignLeft];
 }
 
+- (IBAction)centerTopButtonTouched:(id)sender {
+    [self showMenuForButton:sender withAlignment:DHOptionsMenuAlignCenter];
+}
+
 - (IBAction)rightTopButtonTouched:(id)sender {
     [self showMenuForButton:sender withAlignment:DHOptionsMenuAlignRight];
 }
@@ -40,18 +44,25 @@
         case DHOptionsMenuAlignRight:
             menuTitles = @[@"Right item one", @"Right item two", @"Right item three"];
             break;
+        case DHOptionsMenuAlignCenter:
+            menuTitles = @[@"Center item one", @"Center item two", @"Center item three"];
+            break;
             
     }
     NSMutableArray *menus = [NSMutableArray array];
     
     for (NSString *title in menuTitles) {
-        [menus addObject:[[DHOptionsMenuItem alloc] initWithText:title
+        DHOptionsMenuItem* item = [[DHOptionsMenuItem alloc] initWithText:title
                                                     andItemSize:CGSizeMake(200, 40)
                                                         andFont:[UIFont fontWithName:@"System" size:10]
                                                    andTextColor:[self colorFromHex:0xfefefe]
                                         andHighlightedTextColor:[self colorFromHex:0xf7f7f7]
                                              andBackgroundColor:[self colorFromHex:0x009fe3]
-                                  andHighlightedBackgroundColor:[self colorFromHex:0x42b3e3]]];
+                                  andHighlightedBackgroundColor:[self colorFromHex:0x42b3e3]];
+        if (alignment == DHOptionsMenuAlignCenter) {
+            item.textAlignment = NSTextAlignmentCenter;
+        }
+        [menus addObject:item];
     }
     
     self.menu = [[DHOptionsMenu alloc] initWithItems:menus

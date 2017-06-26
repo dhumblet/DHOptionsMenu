@@ -10,7 +10,7 @@ An Android inspired options menu for iOS.
 
 #### Using CocoaPods:
 ```
-pod 'DHOptionsMenu', '~> 0.1'
+pod 'DHOptionsMenu', '~> 1.0'
 ```
 
 #### Manual installation

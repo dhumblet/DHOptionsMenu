@@ -10,8 +10,9 @@
 ### Bugfixes
 * None. -->
 
-0.3.0 Release notes (xxxx-xx-xx) 
+1.0.0 Release notes (xxxx-xx-xx) 
 ================================
 
 ### Enhancements
+* Pod creation succesful.
 * Added center alignment option.

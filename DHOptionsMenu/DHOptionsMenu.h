@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSInteger, DHOptionsMenuAlignment) {
     DHOptionsMenuAlignLeft = 0,
     DHOptionsMenuAlignRight = 1,
+    DHOptionsMenuAlignCenter = 2
 };
 
 @protocol DHOptionsMenuDelegate

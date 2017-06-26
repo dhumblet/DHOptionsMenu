@@ -89,6 +89,8 @@ andCallingComponent:(UIView*)caller
             return CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
         case DHOptionsMenuAlignRight:
             return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width - itemSize.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+        case DHOptionsMenuAlignCenter:
+            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width/2 - itemSize.width/2, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
     }
 }
 

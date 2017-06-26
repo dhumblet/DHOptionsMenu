@@ -36,6 +36,17 @@
                                     <action selector="leftTopButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K8h-Tj-St7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rM-Uj-Jvf" userLabel="CenterTopButton">
+                                <rect key="frame" x="162" y="10" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.62352941179999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <state key="normal" title="...">
+                                    <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerTopButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5xZ-Zh-ULk"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hz5-Sj-mjR" userLabel="RightTopButton">
                                 <rect key="frame" x="315" y="10" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.62352941179999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,7 +77,11 @@
                             <constraint firstAttribute="trailing" secondItem="MSg-he-61e" secondAttribute="trailing" constant="25" id="QGL-4D-8en"/>
                             <constraint firstItem="dQF-fr-5VA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Yeq-Lq-qye"/>
                             <constraint firstItem="dQF-fr-5VA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="aGI-ah-Dcf"/>
+                            <constraint firstItem="9rM-Uj-Jvf" firstAttribute="height" secondItem="dQF-fr-5VA" secondAttribute="height" id="aMv-2U-f4o"/>
+                            <constraint firstItem="9rM-Uj-Jvf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j3B-fE-kWc"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MSg-he-61e" secondAttribute="bottom" constant="25" id="kh0-ni-8Dg"/>
+                            <constraint firstItem="9rM-Uj-Jvf" firstAttribute="width" secondItem="dQF-fr-5VA" secondAttribute="width" id="oC2-47-wMl"/>
+                            <constraint firstItem="9rM-Uj-Jvf" firstAttribute="top" secondItem="dQF-fr-5VA" secondAttribute="top" id="r7j-ls-YUR"/>
                             <constraint firstItem="MSg-he-61e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="25" id="sNc-Xq-HX3"/>
                         </constraints>
                     </view>
