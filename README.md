@@ -74,6 +74,7 @@ Please use the [Demo project](https://github.com/dhumblet/DHOptionsMenu/tree/mas
 ## Alignment
 - DHOptionsMenuAlignLeft: Aligns menu items with the left side of the view that triggered the menu
 - DHOptionsMenuAlignRight: Aligns menu items with the right side of the view that triggered the menu
+- DHOptionsMenuAlignCenter: Aligns menu items with the center of the view that triggered the menu
 
 ## Further customization
 
