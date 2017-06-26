@@ -10,7 +10,7 @@
 ### Bugfixes
 * None. -->
 
-1.0.0 Release notes (xxxx-xx-xx) 
+1.0.0 Release notes (2017-06-26) 
 ================================
 
 ### Enhancements
