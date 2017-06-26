@@ -36,7 +36,17 @@
 #pragma mark - DHOptionsMenu
 
 - (void)showMenuForButton:(UIButton*)button withAlignment:(DHOptionsMenuAlignment)alignment {
-    NSArray *menuTitles = @[@"Menu item one", @"Menu item two", @"Menu item three"];
+    NSArray *menuTitles;
+    switch (alignment) {
+        default:
+        case DHOptionsMenuAlignLeft:
+            menuTitles = @[@"Left item one", @"Left item two", @"Left item three"];
+            break;
+        case DHOptionsMenuAlignRight:
+            menuTitles = @[@"Right item one", @"Right item two", @"Right item three"];
+            break;
+            
+    }
     NSMutableArray *menus = [NSMutableArray array];
     
     for (NSString *title in menuTitles) {
@@ -63,9 +73,10 @@
 
 - (void)selectedMenuItem:(DHOptionsMenuItem *)item {
     [self.selectedLabel setText:[NSString stringWithFormat:@"Selected\n%@", item.text]];
+    [self.menu hide];
 }
 
-- (void)menuClosed {
+- (void)menuDidHide {
     [self.menu removeFromSuperview];
     self.menu = nil;
 }

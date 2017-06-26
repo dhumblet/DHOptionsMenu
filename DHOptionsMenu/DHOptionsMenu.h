@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, DHOptionsMenuAlignment) {
 
 @protocol DHOptionsMenuDelegate
 - (void)selectedMenuItem:(DHOptionsMenuItem*)item;
-- (void)menuClosed;
+- (void)menuDidHide;
 @end
 
 @interface DHOptionsMenu : UIView<DHOptionsMenuItemDelegate>

@@ -90,7 +90,7 @@ andCallingComponent:(UIView*)caller
 
 - (void)hide {
     if (self.delegate) {
-        [self.delegate menuClosed];
+        [self.delegate menuDidHide];
     }
 }
 
