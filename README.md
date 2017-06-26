@@ -18,12 +18,12 @@ Simple copy the [files](https://github.com/dhumblet/DHOptionsMenu/tree/master/DH
 
 ## How to use
 
-- Import [DHOptionsMenu](https://github.com/dhumblet/DHOptionsMenu/blob/master/DHOptionsMenu/DHOptionsMenu.h)
+#### Import [DHOptionsMenu](https://github.com/dhumblet/DHOptionsMenu/blob/master/DHOptionsMenu/DHOptionsMenu.h)
 ``` objc
 #import "DHOptionsMenu.h"
 ```
 
-- Implement [DHOptionsMenuDelegate](https://github.com/dhumblet/DHOptionsMenu/blob/master/DHOptionsMenu/DHOptionsMenu.h)
+#### Implement [DHOptionsMenuDelegate](https://github.com/dhumblet/DHOptionsMenu/blob/master/DHOptionsMenu/DHOptionsMenu.h)
 ``` objc
 @interface ViewController : UIViewController<DHOptionsMenuDelegate>
 ``` 
@@ -36,7 +36,7 @@ Simple copy the [files](https://github.com/dhumblet/DHOptionsMenu/tree/master/DH
 - (void)menuDidHide { }
 ``` 
 
-- Create menu items
+#### Create menu items
 ``` objc
 [[DHOptionsMenuItem alloc] initWithText:@"Text"
                             andItemSize:CGSizeMake(200, 40)
@@ -47,23 +47,23 @@ Simple copy the [files](https://github.com/dhumblet/DHOptionsMenu/tree/master/DH
           andHighlightedBackgroundColor:[UIColor whiteColor]];
 ``` 
 
-- Create menu 
+#### Create menu 
 ``` objc
-    [[DHOptionsMenu alloc] initWithItems:menuItems
-                          andItemSpacing:1
-                        andItemAlignment:DHOptionsMenuAlignLeft
-                     andCallingComponent:button // The UIView that triggered showing the menu
-                            withDelegate:self];
+[[DHOptionsMenu alloc] initWithItems:menuItems
+	                  andItemSpacing:1
+                    andItemAlignment:DHOptionsMenuAlignLeft
+                 andCallingComponent:button // The UIView that triggered showing the menu
+                        withDelegate:self];
 ``` 
 
-- Show menu
+#### Show menu
 ``` objc
-	[menu showInView:self.view];
+[menu showInView:self.view];
 ``` 
 
-- Hide menu 
+#### Hide menu 
 ``` objc
-	[menu hide];
+[menu hide];
 ``` 
 
 ## Alignment
