@@ -22,8 +22,9 @@
 
 @implementation DHOptionsMenu
 
-- (id)initWithItems:(NSArray *)menuItems
+#pragma mark - Initialization
 
+- (id)initWithItems:(NSArray *)menuItems
      andItemSpacing:(CGFloat)spacing
    andItemAlignment:(DHOptionsMenuAlignment)alignment
 andCallingComponent:(UIView*)caller
@@ -38,22 +39,7 @@ andCallingComponent:(UIView*)caller
     return self;
 }
 
-- (DHOptionsMenuItem *)menuItemAtIndex:(NSUInteger)index {
-    if (index < self.menuItems.count) {
-        return self.menuItems[index];
-    }
-    return nil;
-}
-
-- (CGPoint)getFirstStartPointForItemSize:(CGSize)itemSize {
-    switch (self.alignment) {
-        default:
-        case DHOptionsMenuAlignLeft:
-            return CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
-        case DHOptionsMenuAlignRight:
-            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width - itemSize.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
-    }
-}
+#pragma mark - Show/hide menu
 
 - (void)show {
     DHOptionsMenuItem *previousItem = nil;
@@ -61,7 +47,8 @@ andCallingComponent:(UIView*)caller
     CGFloat maxWidth = 0.f;
     CGPoint startPoint;
 
-    for (DHOptionsMenuItem* item in self.menuItems) {
+    for (int i = 0; i < [self.menuItems count]; i++) {
+        DHOptionsMenuItem* item = [self.menuItems objectAtIndex:i];
         if (previousItem) {
             // Calculate new startpoint based on the previous item
             startPoint = CGPointMake(startPoint.x, startPoint.y + previousItem.itemSize.height + self.itemSpacing);
@@ -69,6 +56,7 @@ andCallingComponent:(UIView*)caller
             startPoint = [self getFirstStartPointForItemSize:item.itemSize];
         }
         item.delegate = self;
+        item.menuIndex = i;
         // Set item frame
         item.frame = CGRectMake(startPoint.x, startPoint.y, item.itemSize.width, item.itemSize.height);
         if (item.itemSize.width > maxWidth) {
@@ -90,13 +78,23 @@ andCallingComponent:(UIView*)caller
     self.menuRect = CGRectMake(firstItem.frame.origin.x, firstItem.frame.origin.y, maxWidth, previousItem.frame.origin.y - firstItem.frame.origin.y);
 }
 
+- (CGPoint)getFirstStartPointForItemSize:(CGSize)itemSize {
+    switch (self.alignment) {
+        default:
+        case DHOptionsMenuAlignLeft:
+            return CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+        case DHOptionsMenuAlignRight:
+            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width - itemSize.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+    }
+}
+
 - (void)hide {
     if (self.delegate) {
         [self.delegate menuClosed];
     }
 }
 
-#pragma mark - Touch
+#pragma mark - User interaction
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint point = [[touches anyObject] locationInView:self];

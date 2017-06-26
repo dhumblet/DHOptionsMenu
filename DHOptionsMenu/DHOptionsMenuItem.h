@@ -17,6 +17,7 @@
 
 @interface DHOptionsMenuItem : UILabel
 @property (nonatomic) CGSize itemSize;
+@property (nonatomic) NSUInteger menuIndex;
 @property (nonatomic, weak) id<DHOptionsMenuItemDelegate> delegate;
 
 - (id)initWithText:(NSString*)text
@@ -27,4 +28,5 @@
            andFont:(UIFont*)font
       andTextColor:(UIColor*)textColor andHighlightedTextColor:(UIColor*)highlightedTextColor
 andBackgroundColor:(UIColor*)backgroundColor andHighlightedBackgroundColor:(UIColor*)highlightedBackgroundColor;
+
 @end

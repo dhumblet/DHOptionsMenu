@@ -21,15 +21,11 @@ typedef NS_ENUM(NSInteger, DHOptionsMenuAlignment) {
 
 @interface DHOptionsMenu : UIView<DHOptionsMenuItemDelegate>
 
-@property (nonatomic, assign) BOOL rotateStartMenu;
-
 - (id)initWithItems:(NSArray *)menuItems
      andItemSpacing:(CGFloat)spacing
    andItemAlignment:(DHOptionsMenuAlignment)alignment
 andCallingComponent:(UIView*)caller
        withDelegate:(id<DHOptionsMenuDelegate>)delegate;
-
-- (DHOptionsMenuItem *)menuItemAtIndex:(NSUInteger)index;
 
 - (void)show;
 - (void)hide;

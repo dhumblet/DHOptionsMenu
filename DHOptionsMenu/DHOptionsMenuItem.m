@@ -16,6 +16,8 @@
 
 @implementation DHOptionsMenuItem
 
+#pragma mark - Initialization
+
 - (id)initWithText:(NSString*)text
        andItemSize:(CGSize)itemSize {
     if (self = [super init]) {
@@ -54,7 +56,7 @@ andBackgroundColor:(UIColor*)backgroundColor andHighlightedBackgroundColor:(UICo
     self.bounds = CGRectMake(0, 0, self.itemSize.width, self.itemSize.height);
 }
 
-#pragma mark - Action
+#pragma mark - User interaction
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
     [self highlight:YES];
@@ -80,6 +82,8 @@ andBackgroundColor:(UIColor*)backgroundColor andHighlightedBackgroundColor:(UICo
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {
     [self highlight:NO];
 }
+
+#pragma mark - Highlight helper method
 
 - (void)highlight:(BOOL)highlighted {
     self.highlighted = highlighted;
