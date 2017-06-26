@@ -3,7 +3,7 @@ DHOptionsMenu
 An Android inspired options menu for iOS.
 
 ## Screenshot)
-<img src="https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif" width="150">
+<img src="https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif" width="350">
 
 ## Installation
 
