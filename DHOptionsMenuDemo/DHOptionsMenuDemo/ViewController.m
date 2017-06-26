@@ -17,11 +17,6 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
 #pragma mark - Touch Actions
 
 - (IBAction)leftTopButtonTouched:(id)sender {
@@ -65,19 +60,19 @@
                                  andCallingComponent:button
                                         withDelegate:self];
     
-    [self.view addSubview:self.menu];
-    [self.menu show];
+    [self.menu showInView:self.view];
 }
 
 #pragma mark - DHOptionsMenuDelegate 
 
 - (void)selectedMenuItem:(DHOptionsMenuItem *)item {
+    NSLog(@"Selected menu item '%@' at index %lu", item.text, item.menuIndex);
     [self.selectedLabel setText:[NSString stringWithFormat:@"Selected\n%@", item.text]];
     [self.menu hide];
 }
 
 - (void)menuDidHide {
-    [self.menu removeFromSuperview];
+    NSLog(@"Menu did hide");
     self.menu = nil;
 }
 

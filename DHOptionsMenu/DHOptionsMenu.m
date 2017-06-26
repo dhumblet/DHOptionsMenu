@@ -17,7 +17,7 @@
 @property (nonatomic, assign) DHOptionsMenuAlignment alignment;
 @property (nonatomic, assign) UIView* caller;
 @property (nonatomic, weak) id<DHOptionsMenuDelegate> delegate;
-
+@property (nonatomic, assign) UIView* parentView;
 @end
 
 @implementation DHOptionsMenu
@@ -41,7 +41,8 @@ andCallingComponent:(UIView*)caller
 
 #pragma mark - Show/hide menu
 
-- (void)show {
+- (void)showInView:(UIView *)view {
+    self.parentView = view;
     DHOptionsMenuItem *previousItem = nil;
     DHOptionsMenuItem *firstItem = nil;
     CGFloat maxWidth = 0.f;
@@ -76,6 +77,9 @@ andCallingComponent:(UIView*)caller
     }
     // Calculate rect for the visible menu
     self.menuRect = CGRectMake(firstItem.frame.origin.x, firstItem.frame.origin.y, maxWidth, previousItem.frame.origin.y - firstItem.frame.origin.y);
+    
+    // Add menu to parentview
+    [self.parentView addSubview:self];
 }
 
 - (CGPoint)getFirstStartPointForItemSize:(CGSize)itemSize {
@@ -89,6 +93,7 @@ andCallingComponent:(UIView*)caller
 }
 
 - (void)hide {
+    [self removeFromSuperview];
     if (self.delegate) {
         [self.delegate menuDidHide];
     }
@@ -111,7 +116,6 @@ andCallingComponent:(UIView*)caller
         [self.delegate selectedMenuItem:item];
     }
 }
-
 
 
 @end

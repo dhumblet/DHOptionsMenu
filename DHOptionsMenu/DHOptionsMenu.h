@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, DHOptionsMenuAlignment) {
 andCallingComponent:(UIView*)caller
        withDelegate:(id<DHOptionsMenuDelegate>)delegate;
 
-- (void)show;
+- (void)showInView:(UIView*)view;
 - (void)hide;
 
 @end
