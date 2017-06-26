@@ -84,5 +84,5 @@ DHOptionsMenuItem are an extension of UILabel and can be customized in a similar
 * ...
 
 ## Feedback
-Please feel free to send me any feedback or improvements you might have.
+Please feel free to send me any feedback or ideas you might have.
     
