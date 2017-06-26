@@ -75,6 +75,14 @@ Please use the [Demo project](https://github.com/dhumblet/DHOptionsMenu/tree/mas
 - DHOptionsMenuAlignLeft: Aligns menu items with the left side of the view that triggered the menu
 - DHOptionsMenuAlignRight: Aligns menu items with the right side of the view that triggered the menu
 
-## 
+## Further customization
+
+DHOptionsMenuItem are an extension of UILabel and can be customized in a similar way.
+* Multiple lines.
+* Text alignment.
+* Truncation.
+* ...
+
+## Feedback
 Please feel free to send me any feedback or improvements you might have.
     
