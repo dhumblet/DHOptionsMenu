@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/dhumblet/DHOptionsMenu"
-   s.screenshots  = "https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif"
+   s.screenshots  = "https://github.com/dhumblet/DHOptionsMenu/blob/master/Screenshot.png"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
