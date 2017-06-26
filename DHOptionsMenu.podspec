@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name         = "DHOptionsMenu"
   s.version      = "0.1.0"
-  s.platform     = :ios, '9.0'
+  s.platform     = :ios, '7.0'
   s.summary      = "An Android inspired options menu for iOS."
   s.description  = "A dropdown options menu that can be called from any UIView component."
   s.homepage     = "https://github.com/dhumblet/DHOptionsMenu"
