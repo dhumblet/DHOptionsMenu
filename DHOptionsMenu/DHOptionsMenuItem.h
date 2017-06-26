@@ -11,21 +11,20 @@
 
 @class DHOptionsMenuItem;
 
-@protocol DHOptionsMenuItemProtocol <NSObject>
-
-@required
+@protocol DHOptionsMenuItemDelegate <NSObject>
 - (void)selectedMenuItem:(DHOptionsMenuItem *)item;
-
 @end
 
 @interface DHOptionsMenuItem : UILabel
-
 @property (nonatomic) CGSize itemSize;
-
-@property (nonatomic, weak) id<DHOptionsMenuItemProtocol> delegate;
+@property (nonatomic, weak) id<DHOptionsMenuItemDelegate> delegate;
 
 - (id)initWithText:(NSString*)text
-                andTitleColor:(UIColor*)titleColor
-           andBackgroundColor:(UIColor*)backgroundColor
-                      andSize:(CGSize)size;
+       andItemSize:(CGSize)itemSize;
+
+- (id)initWithText:(NSString*)text
+       andItemSize:(CGSize)itemSize
+           andFont:(UIFont*)font
+      andTextColor:(UIColor*)textColor andHighlightedTextColor:(UIColor*)highlightedTextColor
+andBackgroundColor:(UIColor*)backgroundColor andHighlightedBackgroundColor:(UIColor*)highlightedBackgroundColor;
 @end

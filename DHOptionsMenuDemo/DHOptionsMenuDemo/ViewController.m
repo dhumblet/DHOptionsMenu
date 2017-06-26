@@ -11,6 +11,7 @@
 @interface ViewController ()
 
 @property (strong, nonatomic) DHOptionsMenu* menu;
+@property (weak, nonatomic) IBOutlet UILabel *selectedLabel;
 
 @end
 
@@ -24,33 +25,35 @@
 #pragma mark - Touch Actions
 
 - (IBAction)leftTopButtonTouched:(id)sender {
-    [self showMenuForButton:sender];
+    [self showMenuForButton:sender withAlignment:DHOptionsMenuAlignLeft];
 }
 
 - (IBAction)rightTopButtonTouched:(id)sender {
-    [self showMenuForButton:sender];
+    [self showMenuForButton:sender withAlignment:DHOptionsMenuAlignRight];
 }
 
 
 #pragma mark - DHOptionsMenu
 
-- (void)showMenuForButton:(UIButton *)button {
-    NSArray *menuTitles = @[@"Menu item one", @"Menu item 2", @"Menu item 3"];
+- (void)showMenuForButton:(UIButton*)button withAlignment:(DHOptionsMenuAlignment)alignment {
+    NSArray *menuTitles = @[@"Menu item one", @"Menu item two", @"Menu item three"];
     NSMutableArray *menus = [NSMutableArray array];
     
-    CGSize itemSize = CGSizeMake(200, 45);
     for (NSString *title in menuTitles) {
         [menus addObject:[[DHOptionsMenuItem alloc] initWithText:title
-                                                   andTitleColor:[UIColor blueColor]
-                                              andBackgroundColor:[UIColor whiteColor]
-                                                         andSize:itemSize]];
+                                                    andItemSize:CGSizeMake(200, 40)
+                                                        andFont:[UIFont fontWithName:@"System" size:10]
+                                                   andTextColor:[self colorFromHex:0xfefefe]
+                                        andHighlightedTextColor:[self colorFromHex:0xf7f7f7]
+                                             andBackgroundColor:[self colorFromHex:0x009fe3]
+                                  andHighlightedBackgroundColor:[self colorFromHex:0x42b3e3]]];
     }
     
-    self.menu = [[DHOptionsMenu alloc] initWithFrame:self.view.frame
-                                           menuItems:menus
-                                             spacing:1
-                                              caller:button
-                                            delegate:self];
+    self.menu = [[DHOptionsMenu alloc] initWithItems:menus
+                                      andItemSpacing:1
+                                    andItemAlignment:alignment
+                                 andCallingComponent:button
+                                        withDelegate:self];
     
     [self.view addSubview:self.menu];
     [self.menu show];
@@ -59,12 +62,20 @@
 #pragma mark - DHOptionsMenuDelegate 
 
 - (void)selectedMenuItem:(DHOptionsMenuItem *)item {
-    NSLog(@"Selected menu item '%@'", item.text);
+    [self.selectedLabel setText:[NSString stringWithFormat:@"Selected\n%@", item.text]];
 }
 
 - (void)menuClosed {
-    NSLog(@"Close");
     [self.menu removeFromSuperview];
     self.menu = nil;
+}
+
+#pragma mark - Helper methods
+
+- (UIColor*)colorFromHex:(int)rgbValue {
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                           green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+                            blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+                           alpha:1.0];
 }
 @end

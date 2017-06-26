@@ -9,22 +9,25 @@
 #import "DHOptionsMenuItem.h"
 
 
-@protocol DHOptionsMenuDelegate
+typedef NS_ENUM(NSInteger, DHOptionsMenuAlignment) {
+    DHOptionsMenuAlignLeft = 0,
+    DHOptionsMenuAlignRight = 1,
+};
 
+@protocol DHOptionsMenuDelegate
 - (void)selectedMenuItem:(DHOptionsMenuItem*)item;
 - (void)menuClosed;
-
 @end
 
-@interface DHOptionsMenu : UIView<DHOptionsMenuItemProtocol>
+@interface DHOptionsMenu : UIView<DHOptionsMenuItemDelegate>
 
 @property (nonatomic, assign) BOOL rotateStartMenu;
 
-- (id)initWithFrame:(CGRect)frame
-          menuItems:(NSArray *)menuItems
-            spacing:(CGFloat)spacing
-             caller:(UIView*)caller
-           delegate:(id<DHOptionsMenuDelegate>)delegate;
+- (id)initWithItems:(NSArray *)menuItems
+     andItemSpacing:(CGFloat)spacing
+   andItemAlignment:(DHOptionsMenuAlignment)alignment
+andCallingComponent:(UIView*)caller
+       withDelegate:(id<DHOptionsMenuDelegate>)delegate;
 
 - (DHOptionsMenuItem *)menuItemAtIndex:(NSUInteger)index;
 

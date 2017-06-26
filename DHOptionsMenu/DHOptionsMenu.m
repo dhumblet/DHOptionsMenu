@@ -9,43 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "DHOptionsMenu.h"
 
-static const CGFloat kLSAnimationDurationStartMenuRotate = 0.25;
-static const CGFloat kLSAnimationDelay = 0.036f;
-static const CGFloat kLSAnimationDuration = 0.3f;
-static NSString * const kLSKeyAnimationGroupID = @"AnimationGroupID";
-static NSString * const kLSKeyFirstAnimationGroupValue = @"FirstAnimationGroup";
-static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
-
 @interface DHOptionsMenu ()
 
-@property (nonatomic, copy) NSArray *menuItems;
-@property (nonatomic, weak) id<DHOptionsMenuDelegate> delegate;
-
-@property (nonatomic, assign) BOOL isAnimating;
-@property (nonatomic, assign) BOOL isExpanded;
-@property (nonatomic, assign) CGFloat itemSpacing;
-
-@property (nonatomic, strong) NSTimer *animationTimer;
-@property (nonatomic, assign) NSInteger animationTag;
-@property (nonatomic, assign) UIView* caller;
-
 @property (nonatomic) CGRect menuRect;
+@property (nonatomic, copy) NSArray *menuItems;
+@property (nonatomic, assign) CGFloat itemSpacing;
+@property (nonatomic, assign) DHOptionsMenuAlignment alignment;
+@property (nonatomic, assign) UIView* caller;
+@property (nonatomic, weak) id<DHOptionsMenuDelegate> delegate;
 
 @end
 
 @implementation DHOptionsMenu
 
-- (id)initWithFrame:(CGRect)frame
-          menuItems:(NSArray *)menuItems
-            spacing:(CGFloat)spacing
-             caller:(UIView*)caller
-           delegate:(id<DHOptionsMenuDelegate>)delegate {
-    
+- (id)initWithItems:(NSArray *)menuItems
+
+     andItemSpacing:(CGFloat)spacing
+   andItemAlignment:(DHOptionsMenuAlignment)alignment
+andCallingComponent:(UIView*)caller
+       withDelegate:(id<DHOptionsMenuDelegate>)delegate {
     if (self = [super initWithFrame:[[UIScreen mainScreen] bounds]]) {
         self.menuItems = menuItems;
-        self.delegate = delegate;
-        self.caller = caller;
         self.itemSpacing = spacing;
+        self.alignment = alignment;
+        self.caller = caller;
+        self.delegate = delegate;
     }
     return self;
 }
@@ -57,30 +45,49 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
     return nil;
 }
 
-//- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait {
+- (CGPoint)getFirstStartPointForItemSize:(CGSize)itemSize {
+    switch (self.alignment) {
+        default:
+        case DHOptionsMenuAlignLeft:
+            return CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+        case DHOptionsMenuAlignRight:
+            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width - itemSize.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+    }
+}
 
 - (void)show {
     DHOptionsMenuItem *previousItem = nil;
     DHOptionsMenuItem *firstItem = nil;
-    CGPoint startPoint = CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
-    
+    CGFloat maxWidth = 0.f;
+    CGPoint startPoint;
+
     for (DHOptionsMenuItem* item in self.menuItems) {
+        if (previousItem) {
+            // Calculate new startpoint based on the previous item
+            startPoint = CGPointMake(startPoint.x, startPoint.y + previousItem.itemSize.height + self.itemSpacing);
+        } else {
+            startPoint = [self getFirstStartPointForItemSize:item.itemSize];
+        }
         item.delegate = self;
         // Set item frame
         item.frame = CGRectMake(startPoint.x, startPoint.y, item.itemSize.width, item.itemSize.height);
-        // Calculate new startpoint for next item
-        startPoint = CGPointMake(startPoint.x, startPoint.y + item.itemSize.height + self.itemSpacing);
+        if (item.itemSize.width > maxWidth) {
+            maxWidth = item.itemSize.width;
+        }
         
+        // Add item
         if (previousItem) {
             [self insertSubview:item belowSubview:previousItem];
         } else {
             [self addSubview:item];
             firstItem = item;
         }
+        
+        // Next iteration
         previousItem = item;
     }
-    
-    self.menuRect = CGRectMake(firstItem.frame.origin.x, firstItem.frame.origin.y, firstItem.frame.size.width, previousItem.frame.origin.y - firstItem.frame.origin.y);
+    // Calculate rect for the visible menu
+    self.menuRect = CGRectMake(firstItem.frame.origin.x, firstItem.frame.origin.y, maxWidth, previousItem.frame.origin.y - firstItem.frame.origin.y);
 }
 
 - (void)hide {
@@ -91,20 +98,15 @@ static NSString * const kLSKeyLastAnimationGroupValue = @"LastAnimationGroup";
 
 #pragma mark - Touch
 
-//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-//    return CGRectContainsPoint(self.menuRect, point);
-//}
-
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint point = [[touches anyObject] locationInView:self];
-
     if (!CGRectContainsPoint(self.menuRect, point)) {
         [self hide];
     }
     
 }
 
-#pragma mark - FloatingActionMenuItemDelegate
+#pragma mark - DHOptionsMenuItemDelegate
 
 - (void)selectedMenuItem:(DHOptionsMenuItem *)item {
     if (self.delegate) {
