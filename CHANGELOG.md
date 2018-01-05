@@ -10,6 +10,13 @@
 ### Bugfixes
 * None. -->
 
+1.0.1 Release notes (2018-01-05)
+================================
+
+### Enhancements
+* Added menu offset option.
+
+
 1.0.0 Release notes (2017-06-26) 
 ================================
 

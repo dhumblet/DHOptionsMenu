@@ -18,6 +18,7 @@
 @property (nonatomic, assign) UIView* caller;
 @property (nonatomic, weak) id<DHOptionsMenuDelegate> delegate;
 @property (nonatomic, assign) UIView* parentView;
+@property (nonatomic, assign) CGSize offset;
 @end
 
 @implementation DHOptionsMenu
@@ -29,11 +30,26 @@
    andItemAlignment:(DHOptionsMenuAlignment)alignment
 andCallingComponent:(UIView*)caller
        withDelegate:(id<DHOptionsMenuDelegate>)delegate {
+    return [self initWithItems:menuItems
+                andItemSpacing:spacing
+              andItemAlignment:alignment
+           andCallingComponent:caller
+                     andOffset:CGSizeMake(0, 0)
+                  withDelegate:delegate];
+}
+
+- (id)initWithItems:(NSArray *)menuItems
+     andItemSpacing:(CGFloat)spacing
+   andItemAlignment:(DHOptionsMenuAlignment)alignment
+andCallingComponent:(UIView*)caller
+          andOffset:(CGSize)offset
+       withDelegate:(id<DHOptionsMenuDelegate>)delegate {
     if (self = [super initWithFrame:[[UIScreen mainScreen] bounds]]) {
         self.menuItems = menuItems;
         self.itemSpacing = spacing;
         self.alignment = alignment;
         self.caller = caller;
+        self.offset = offset;
         self.delegate = delegate;
     }
     return self;
@@ -86,11 +102,11 @@ andCallingComponent:(UIView*)caller
     switch (self.alignment) {
         default:
         case DHOptionsMenuAlignLeft:
-            return CGPointMake(self.caller.frame.origin.x, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+            return CGPointMake(self.caller.frame.origin.x + self.offset.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing + self.offset.height);
         case DHOptionsMenuAlignRight:
-            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width - itemSize.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width - itemSize.width + self.offset.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing + self.offset.height);
         case DHOptionsMenuAlignCenter:
-            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width/2 - itemSize.width/2, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing);
+            return CGPointMake(self.caller.frame.origin.x + self.caller.frame.size.width/2 - itemSize.width/2 + self.offset.width, self.caller.frame.origin.y + self.caller.frame.size.height + self.itemSpacing + self.offset.height);
     }
 }
 
