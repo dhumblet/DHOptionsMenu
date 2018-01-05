@@ -4,7 +4,7 @@ An Android inspired options menu for iOS.
 
 ## Screenshot
 <!-- [![](https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif)](https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif) -->
-<img src="https://github.com/dhumblet/DHOptionsMenu/blob/master/Demo.gif" width="350">
+<img src="https://github.com/dhumblet/DHOptionsMenu/blob/master/DemoLR.gif" width="350">
 
 ## Installation
 
